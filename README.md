@@ -1,0 +1,2 @@
+# yonkoyo.github.io
+Лаба
