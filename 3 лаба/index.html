@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта</title>
+    <script src="">
+        var map;
+        ymaps.ready(function(){
+            var mapDivId = 'map'; //Id контейнера для карты 
+            var mapCenter = [55.76, 37.64]; //Координата центра карты по умолчанию
+            map = new ymaps.Map(mapDivId , { center: mapCenter, zoom: 10 });
+
+            var pointA = "Саратов"; //Откуда считаем
+            var pointB = "Москва"; //Куда считаем
+            ymaps.route([pointA , pointB ]).then(
+            function (route) {
+                var distance = route.getHumanLength(); //Получаем расстояние
+                alert(distance.replace(' ', ' '));
+                map.geoObjects.add(route); //Рисуем маршрут на карте
+            },
+            function (error) {
+                alert('Ошибка: ' + error.message); 
+            }
+        );
+        });
+    </script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:150px"></div>
+</body>
+</html>
